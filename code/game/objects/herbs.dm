@@ -171,3 +171,13 @@
 	name = "mandrake"
 	icon_state = "mandrake"
 	herbtype = /obj/item/reagent_containers/food/snacks/produce/mandrake
+
+/obj/structure/flora/grass/herb/mandrake/attack_hand(mob/user)
+	if(isliving(user) && !harvested)
+		var/mob/living/L = user
+		if(do_after(L, rand(3,5) DECISECONDS, src))
+			if(((user.mind.get_skill_level(/datum/skill/craft/alchemy) < SKILL_LEVEL_APPRENTICE) && !(user.mind.get_skill_level(/datum/skill/labor/farming) >= SKILL_LEVEL_APPRENTICE)))
+				to_chat(user, "lash")
+				return
+	..()
+
