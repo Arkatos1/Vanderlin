@@ -14,8 +14,8 @@
 	TOTALCON = 9
 	TOTALSTR = 14
 	TOTALSPD = 13
-	maxHealth = 200
-	health = 200
+	maxHealth = 10
+	health = 10
 	harm_intent_damage = 15
 	melee_damage_lower = 25
 	melee_damage_upper = 30
