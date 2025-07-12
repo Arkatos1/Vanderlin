@@ -408,11 +408,8 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			else
 				dat += "<a class='linkOff' href='byond://?src=[REF(N)];late_join=1'>JOINLATE</a>"
 			dat += " - <a href='?_src_=prefs;preference=migrants'>MIGRATION</a>"
-			if(!is_active_migrant())
-				dat += "<a href='byond://?src=[REF(N)];observe=1'>OBSERVE</a>"
-			else
-				dat += "<a class='linkOff' href='byond://?src=[REF(N)];observe=1'>OBSERVE</a>"
 			dat += "<br><a href='?_src_=prefs;preference=manifest'>ACTORS</a>"
+			dat += "- <a href='byond://?src=[REF(N)];observe=1'>OBSERVE</a>"
 	else
 		dat += "<a href='?_src_=prefs;preference=finished'>DONE</a>"
 		dat += "</center>"
