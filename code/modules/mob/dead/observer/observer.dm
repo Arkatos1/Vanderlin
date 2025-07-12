@@ -456,6 +456,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		qdel(M)
 		return
 
+	client.prevent_respawn = FALSE
 	client?.verbs -= /client/proc/descend
 	M.key = key
 //	M.Login()	//wat

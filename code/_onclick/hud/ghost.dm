@@ -20,6 +20,9 @@
 		if(G.client?.holder)
 			G.follow()
 	else
+		if(G?.client.prevent_respawn)
+			to_chat(G, span_notice("You cannot escape from the fate your have chosen, observer."))
+			return
 		if(G.isinhell)
 			return
 		if(G.client)

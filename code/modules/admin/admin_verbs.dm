@@ -414,7 +414,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 //		to_chat(src, "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>")
 //		return FALSE
 		var/mob/dead/new_player/NP = mob
-		NP.make_me_an_observer()
+		NP.make_me_an_observer(FALSE)
 	else
 		//ghostize
 		log_admin("[key_name(usr)] admin ghosted.")

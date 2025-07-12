@@ -66,6 +66,8 @@
 	var/last_charge_process
 	var/datum/patreon_data/patreon
 	var/toggled_leylines = TRUE
+	/// Prevents client to return to the underworld or lobby unless forced
+	var/prevent_respawn = FALSE
 
 /atom/movable/screen
 	blockscharging = TRUE

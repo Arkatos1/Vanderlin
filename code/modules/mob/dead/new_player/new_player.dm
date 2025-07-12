@@ -162,6 +162,12 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/Lore_Primer.txt"))
 	else if(!href_list["late_join"])
 		new_player_panel()
 
+	if(href_list["observe"])
+		if(!SSticker?.IsRoundInProgress())
+			to_chat(usr, "<span class='boldwarning'>The game is starting. You cannot observe yet.</span>")
+			return
+		make_me_an_observer()
+
 	if(href_list["showpoll"])
 		handle_player_polling()
 		return
@@ -187,12 +193,12 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/Lore_Primer.txt"))
 		popup.open()
 
 //When you cop out of the round (NB: this HAS A SLEEP FOR PLAYER INPUT IN IT)
-/mob/dead/new_player/proc/make_me_an_observer()
+/mob/dead/new_player/proc/make_me_an_observer(prevent_respawn = TRUE)
 	if(QDELETED(src) || !src.client)
 		ready = PLAYER_NOT_READY
 		return FALSE
 
-	var/this_is_like_playing_right = alert(src,"Are you sure you wish to observe? You will not be able to play this round!","Player Setup","Yes","No")
+	var/this_is_like_playing_right = alert(src, "Are you sure you wish to observe? [prevent_respawn ? "You will not be able to respawn this round!" : ""]", "Observe", "Yes", "No")
 
 	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Yes")
 		ready = PLAYER_NOT_READY
@@ -215,9 +221,12 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/Lore_Primer.txt"))
 	observer.key = key
 	observer.client = client
 	observer.set_ghost_appearance()
-	if(observer.client && observer.client.prefs)
-		observer.real_name = observer.client.prefs.real_name
-		observer.name = observer.real_name
+	if(observer.client)
+		if(prevent_respawn)
+			observer.client.prevent_respawn = TRUE
+		if(observer.client.prefs)
+			observer.real_name = observer.client.prefs.real_name
+			observer.name = observer.real_name
 	observer.update_appearance()
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	QDEL_NULL(mind)

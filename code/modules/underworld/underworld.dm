@@ -29,6 +29,7 @@
 		qdel(M)
 		return
 
+	client.prevent_respawn = FALSE
 	client?.verbs -= /client/proc/descend
 	M.key = key
 	qdel(src)

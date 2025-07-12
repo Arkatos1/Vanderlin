@@ -142,6 +142,7 @@
 		qdel(M)
 		return
 
+	client.prevent_respawn = FALSE
 	M.key = key
 	qdel(src)
 	return
